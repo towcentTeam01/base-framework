@@ -1,11 +1,13 @@
 package com.towcent.base.manager;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
 import com.towcent.base.common.enums.RuleTypeEnum;
 import com.towcent.base.common.exception.RpcException;
 import com.towcent.base.common.exception.ServiceException;
+import com.towcent.base.common.model.JsSysConfig;
 import com.towcent.base.common.model.JsSysDictData;
 import com.towcent.base.common.model.SysImageConf;
 import com.towcent.base.common.model.SysWxConfig;
@@ -102,4 +104,58 @@ public interface BaseCommonApi {
 	 * @throws RpcException
 	 */
 	List<SysWxConfig> getSysWxConfigListByParam(Map<String, Object> params) throws RpcException;
+	
+	/**
+	 * 根据数据Key获取属性对象.
+	 * @Title getSysPropertyByKey
+	 * @param key
+	 * @return
+	 * @throws ServiceException
+	 */
+	JsSysConfig getSysPropertyByKey(Integer merchantId, String key) throws ServiceException;
+	
+	/**
+	 * 获取属性值 -- 返回字符串.
+	 * @Title getSysPropertyToString
+	 * @param key
+	 * @return
+	 * @throws ServiceException
+	 */
+	String getSysPropertyToString(Integer merchantId, String key) throws ServiceException;
+	
+	/**
+	 * 获取属性值 -- 返回数字.
+	 * @Title getSysPropertyToInt
+	 * @param key
+	 * @return
+	 * @throws ServiceException
+	 */
+	Integer getSysPropertyToInt(Integer merchantId, String key) throws ServiceException;
+	
+	/**
+	 * 获取属性值 -- 返回布尔类型.
+	 * @Title getSysPropertyToBoolean
+	 * @param key
+	 * @return
+	 * @throws ServiceException
+	 */
+	Boolean getSysPropertyToBoolean(Integer merchantId, String key) throws ServiceException;
+	
+	/**
+	 * 获取属性值 -- 返回double.
+	 * @Title getSysPropertyToDouble
+	 * @param key
+	 * @return
+	 * @throws ServiceException
+	 */
+	Double getSysPropertyToDouble(Integer merchantId, String key) throws ServiceException;
+	
+	/**
+	 * 获取属性值 -- 返回浮点型.
+	 * @Title getSysPropertyToBigDecimal
+	 * @param key
+	 * @return
+	 * @throws ServiceException
+	 */
+	BigDecimal getSysPropertyToBigDecimal(Integer merchantId, String key) throws ServiceException;
 }

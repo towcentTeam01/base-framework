@@ -1,5 +1,6 @@
 package com.towcent.base.manager.impl;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
@@ -14,6 +15,7 @@ import com.towcent.base.common.constants.BaseConstant;
 import com.towcent.base.common.enums.RuleTypeEnum;
 import com.towcent.base.common.exception.RpcException;
 import com.towcent.base.common.exception.ServiceException;
+import com.towcent.base.common.model.JsSysConfig;
 import com.towcent.base.common.model.JsSysDictData;
 import com.towcent.base.common.model.JsSysDictType;
 import com.towcent.base.common.model.SysImageConf;
@@ -22,6 +24,7 @@ import com.towcent.base.common.utils.Assert;
 import com.towcent.base.common.utils.ImageUtils;
 import com.towcent.base.manager.BaseCommonApi;
 import com.towcent.base.service.CodingRuleService;
+import com.towcent.base.service.JsSysConfigService;
 import com.towcent.base.service.JsSysDictDataService;
 import com.towcent.base.service.JsSysDictTypeService;
 import com.towcent.base.service.SysImageConfService;
@@ -40,6 +43,8 @@ public class BaseCommonApiImpl implements BaseCommonApi {
 	private CodingRuleService codingRuleService;
 	@Resource
 	private SysWxConfigService sysWxConfigService;
+	@Resource
+	private JsSysConfigService jsSysConfigService;
 	
 	@Override
 	public List<JsSysDictData> getDictListByKey(Integer merchantId, String key) throws RpcException {
@@ -149,5 +154,35 @@ public class BaseCommonApiImpl implements BaseCommonApi {
 			throw new RpcException("", "", e);
 		}
 			
+	}
+
+	@Override
+	public JsSysConfig getSysPropertyByKey(Integer merchantId, String key) throws ServiceException {
+		return jsSysConfigService.getSysPropertyByKey(merchantId, key);
+	}
+
+	@Override
+	public String getSysPropertyToString(Integer merchantId, String key) throws ServiceException {
+		return jsSysConfigService.getSysPropertyToString(merchantId, key);
+	}
+
+	@Override
+	public Integer getSysPropertyToInt(Integer merchantId, String key) throws ServiceException {
+		return jsSysConfigService.getSysPropertyToInt(merchantId, key);
+	}
+
+	@Override
+	public Boolean getSysPropertyToBoolean(Integer merchantId, String key) throws ServiceException {
+		return jsSysConfigService.getSysPropertyToBoolean(merchantId, key);
+	}
+
+	@Override
+	public Double getSysPropertyToDouble(Integer merchantId, String key) throws ServiceException {
+		return jsSysConfigService.getSysPropertyToDouble(merchantId, key);
+	}
+
+	@Override
+	public BigDecimal getSysPropertyToBigDecimal(Integer merchantId, String key) throws ServiceException {
+		return jsSysConfigService.getSysPropertyToBigDecimal(merchantId, key);
 	}
 }

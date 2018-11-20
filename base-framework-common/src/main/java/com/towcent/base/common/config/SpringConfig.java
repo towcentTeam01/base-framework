@@ -52,6 +52,16 @@ public class SpringConfig {
 	 */
 	@Value("${push.audience}")  
 	private String audienceType;
+
+	/**============== 个推配置 ==================*/
+
+	@Value("${gt.push.appkey}")
+	private String gtAppKey;
+	@Value("${gt.push.mastersecret}")
+	private String gtMasterSecret;
+	@Value("${gt.push.appid}")
+	private String gtAppId;
+
 }
 
 	

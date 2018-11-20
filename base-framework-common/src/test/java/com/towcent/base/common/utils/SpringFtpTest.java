@@ -32,7 +32,7 @@ public class SpringFtpTest extends BaseTest {
 	 * @throws UnsupportedEncodingException
 	 */
 	@Test public void upload() throws UnsupportedEncodingException {
-		File file = new File(getCurrentPath() + "123.jpg");
+		File file = new File("d:\\123.jpg");
 		SpringFTPUtil.ftpUpload(ftpChannel, file, "/huangtao/upload/");
 		System.out.println("upload success!");
 	}

@@ -1,6 +1,8 @@
 package com.towcent.base.manager;
 
+import com.gexin.rp.sdk.base.impl.SingleMessage;
 import com.towcent.base.common.exception.RpcException;
+import com.towcent.base.common.model.GtPushDto;
 import com.towcent.base.common.model.JPushDto;
 import com.towcent.base.common.model.PushMessage;
 
@@ -34,4 +36,12 @@ public interface PushApi {
 	 * @throws RpcException
 	 */
 	void jpushMsg(JPushDto dto) throws RpcException;
+
+	/**
+	 * 个推  --> 单个推送
+	 * @param dto
+	 * @param appId
+	 * @throws RpcException
+	 */
+	void gtPushSingle(GtPushDto dto, String appId) throws RpcException;
 }
