@@ -1,48 +1,48 @@
 <?xml version="1.0"?>
 <project
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
-	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+		xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+		xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.towcent</groupId>
 		<artifactId>base-framework</artifactId>
 		<version>1.5.0-SNAPSHOT</version>
 	</parent>
-	
+
 	<artifactId>base-framework-common</artifactId>
 	<version>${project.parent.version}</version>
 	<packaging>jar</packaging>
 	<name>base-framework-common</name>
 	<url>http://maven.apache.org</url>
-	
+
 	<properties>
 		<dozer.version>5.5.1</dozer.version>
 		<pay.version>2.12.1</pay.version>
 	</properties>
-	
+
 	<dependencies>
 		<dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>fastjson</artifactId>
-			<version>1.2.41</version>
+			<version>1.2.49</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.solr</groupId>
 			<artifactId>solr-solrj</artifactId>
 			<version>5.5.0</version>
 		</dependency>
-	    <!-- lucene 5.5.0 -->
-	    <dependency>
-	        <groupId>org.apache.lucene</groupId>
-	        <artifactId>lucene-core</artifactId>
-	        <version>5.5.0</version>
-        </dependency>
-        <dependency>
-		  <groupId>fakepath</groupId>
-		  <artifactId>ikanalyzer</artifactId>
-		  <version>5.0</version>
+		<!-- lucene 5.5.0 -->
+		<dependency>
+			<groupId>org.apache.lucene</groupId>
+			<artifactId>lucene-core</artifactId>
+			<version>5.5.0</version>
 		</dependency>
-		
+		<dependency>
+			<groupId>fakepath</groupId>
+			<artifactId>ikanalyzer</artifactId>
+			<version>5.0</version>
+		</dependency>
+
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpmime</artifactId>
@@ -65,7 +65,7 @@
 			<artifactId>cglib</artifactId>
 		</dependency>
 		<!-- AOP end -->
-		
+
 		<!-- spring begin -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -100,7 +100,7 @@
 			<artifactId>spring-messaging</artifactId>
 		</dependency>
 		<!-- spring end -->
-		
+
 		<dependency>
 			<groupId>redis.clients</groupId>
 			<artifactId>jedis</artifactId>
@@ -109,24 +109,24 @@
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-redis</artifactId>
 		</dependency>
-		
+
 		<!-- mysql drive -->
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>com.hynnet</groupId>
 			<artifactId>oracle-driver-ojdbc6</artifactId>
 		</dependency>
-			
+
 		<!-- connection pool -->
 		<dependency>
-		     <groupId>com.alibaba</groupId>
-		     <artifactId>druid</artifactId>
+			<groupId>com.alibaba</groupId>
+			<artifactId>druid</artifactId>
 		</dependency>
-		
+
 		<!-- mybatis支持 -->
 		<dependency>
 			<groupId>org.mybatis</groupId>
@@ -136,7 +136,7 @@
 			<groupId>org.mybatis</groupId>
 			<artifactId>mybatis-spring</artifactId>
 		</dependency>
-		
+
 		<!-- JMS支持 -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -146,7 +146,7 @@
 			<groupId>org.apache.activemq</groupId>
 			<artifactId>activemq-pool</artifactId>
 		</dependency>
-		
+
 		<!-- dubbo支持 -->
 		<dependency>
 			<groupId>com.alibaba</groupId>
@@ -161,11 +161,11 @@
 			<artifactId>zookeeper</artifactId>
 		</dependency>
 		<dependency>
-            <groupId>org.javassist</groupId>
-            <artifactId>javassist</artifactId>
-            <version>3.21.0-GA</version>
-        </dependency>
-		
+			<groupId>org.javassist</groupId>
+			<artifactId>javassist</artifactId>
+			<version>3.21.0-GA</version>
+		</dependency>
+
 		<!-- Kyro序列化支持 -->
 		<!-- <dependency>
 		    <groupId>com.esotericsoftware.kryo</groupId>
@@ -173,23 +173,23 @@
 		    <version>2.24.0</version>
 		</dependency> -->
 		<dependency>
-		    <groupId>de.javakaffee</groupId>
-		    <artifactId>kryo-serializers</artifactId>
-		    <version>0.42</version>
+			<groupId>de.javakaffee</groupId>
+			<artifactId>kryo-serializers</artifactId>
+			<version>0.42</version>
 		</dependency>
-		
+
 		<!-- pojo copy -->
 		<dependency>
 			<groupId>net.sf.dozer</groupId>
 			<artifactId>dozer</artifactId>
 			<version>${dozer.version}</version>
 		</dependency>
-		
+
 		<dependency>
-		    <groupId>com.google.zxing</groupId>
-		    <artifactId>core</artifactId>
+			<groupId>com.google.zxing</groupId>
+			<artifactId>core</artifactId>
 		</dependency>
-		
+
 		<!-- jackson -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
@@ -199,7 +199,7 @@
 			<groupId>com.fasterxml.jackson.module</groupId>
 			<artifactId>jackson-module-jaxb-annotations</artifactId>
 		</dependency>
-		
+
 		<!-- apache common -->
 		<dependency>
 			<groupId>commons-beanutils</groupId>
@@ -229,22 +229,22 @@
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-validator</artifactId>
 		</dependency>
-				
+
 		<dependency>
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.quartz-scheduler</groupId>
 			<artifactId>quartz</artifactId>
 		</dependency>
-		
+
 		<!-- poi office -->
 		<dependency>
 			<groupId>org.apache.poi</groupId>
@@ -258,17 +258,17 @@
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi-ooxml-schemas</artifactId>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>javax.mail</groupId>
 			<artifactId>mail</artifactId>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.freemarker</groupId>
 			<artifactId>freemarker</artifactId>
 		</dependency>
-		
+
 		<dependency>
 			<artifactId>slf4j-api</artifactId>
 			<groupId>org.slf4j</groupId>
@@ -285,18 +285,18 @@
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
 		</dependency>-->
-		
+
 		<dependency>
-		  	<groupId>com.towcent.taobao</groupId>
-		  	<artifactId>taobao-sdk-java-auto_1455552377940</artifactId>
-		  	<version>20160607</version>
+			<groupId>com.towcent.taobao</groupId>
+			<artifactId>taobao-sdk-java-auto_1455552377940</artifactId>
+			<version>20160607</version>
 		</dependency>
-		
+
 		<!-- 支付依赖 -->
 		<dependency>
 			<groupId>com.egzosn</groupId>
 			<artifactId>pay-java-ali</artifactId>
-			<version>${pay.version}</version>	
+			<version>${pay.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.egzosn</groupId>
@@ -306,7 +306,7 @@
 		<dependency>
 			<groupId>com.egzosn</groupId>
 			<artifactId>pay-java-union</artifactId>
-			<version>${pay.version}</version>	
+			<version>${pay.version}</version>
 		</dependency>
 
 		<!--微信公众号依赖-->
@@ -321,14 +321,14 @@
 			<artifactId>weixin-java-miniapp</artifactId>
 			<version>3.2.0</version>
 		</dependency>
-		
+
 		<!-- 定时任务 -->
-        <dependency>
+		<dependency>
 			<groupId>com.xuxueli</groupId>
 			<artifactId>xxl-job-core</artifactId>
 			<version>1.8.0-SNAPSHOT</version>
-        </dependency>
-		
+		</dependency>
+
 		<!-- 阿里云sdk -->
 		<dependency>
 			<groupId>com.aliyun</groupId>
@@ -340,7 +340,7 @@
 			<artifactId>aliyun-java-sdk-dysmsapi</artifactId>
 			<version>1.0.0</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
@@ -371,31 +371,31 @@
 			<artifactId>jpush-client</artifactId>
 			<version>3.3.4</version>
 		</dependency>
-		
+
 		<dependency>
-            <groupId>net.coobird</groupId>
-            <artifactId>thumbnailator</artifactId>
-        </dependency>
-        
-        <!-- https://mvnrepository.com/artifact/org.tinygroup/org.tinygroup.spider 
+			<groupId>net.coobird</groupId>
+			<artifactId>thumbnailator</artifactId>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.tinygroup/org.tinygroup.spider
+        <dependency>
+            <groupId>org.tinygroup</groupId>
+            <artifactId>org.tinygroup.spider</artifactId>
+            <version>3.0.0</version>
+        </dependency>-->
+
 		<dependency>
-		    <groupId>org.tinygroup</groupId>
-		    <artifactId>org.tinygroup.spider</artifactId>
-		    <version>3.0.0</version>
-		</dependency>-->
-		
-		<dependency>
-		    <groupId>us.codecraft</groupId>
-		    <artifactId>webmagic-core</artifactId>
-		    <version>0.7.3</version>
+			<groupId>us.codecraft</groupId>
+			<artifactId>webmagic-core</artifactId>
+			<version>0.7.3</version>
 		</dependency>
 		<dependency>
-		    <groupId>us.codecraft</groupId>
-		    <artifactId>webmagic-extension</artifactId>
-		    <version>0.7.3</version>
+			<groupId>us.codecraft</groupId>
+			<artifactId>webmagic-extension</artifactId>
+			<version>0.7.3</version>
 		</dependency>
-    
-        <!-- 容联*云通讯 SDK -->
+
+		<!-- 容联*云通讯 SDK -->
 		<dependency>
 			<groupId>com.cloopen.rest</groupId>
 			<artifactId>sdk</artifactId>
@@ -437,28 +437,28 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
 			</plugin>
-			<!-- 混淆代码 
-			<plugin>  
-                <groupId>com.github.wvengen</groupId>  
-                <artifactId>proguard-maven-plugin</artifactId>  
-                <version>2.0.13</version>  
-                <executions>  
-                    <execution>  
-                        <phase>package</phase>  
-                        <goals>  
-                            <goal>proguard</goal>  
-                        </goals>  
-                    </execution>  
-                </executions>  
-                <configuration>  
-                    <obfuscate>true</obfuscate>  
-                    <proguardInclude>${basedir}/proguard.cfg</proguardInclude>                
-                    <attach>true</attach>  
-                    <attachArtifactClassifier>proguard</attachArtifactClassifier>               
+			<!-- 混淆代码
+			<plugin>
+                <groupId>com.github.wvengen</groupId>
+                <artifactId>proguard-maven-plugin</artifactId>
+                <version>2.0.13</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>proguard</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <obfuscate>true</obfuscate>
+                    <proguardInclude>${basedir}/proguard.cfg</proguardInclude>
+                    <attach>true</attach>
+                    <attachArtifactClassifier>proguard</attachArtifactClassifier>
                 	<libs>
                         <lib>${java.home}/lib/rt.jar</lib>
                     </libs>
-                </configuration>  
+                </configuration>
             </plugin> -->
 		</plugins>
 	</build>
