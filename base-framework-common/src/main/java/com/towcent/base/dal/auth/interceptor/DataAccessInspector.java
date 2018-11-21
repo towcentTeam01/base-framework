@@ -62,7 +62,7 @@ public class DataAccessInspector implements Interceptor {
 				object = metaStatementHandler.getValue("target");
 			}
 			if (object != null) {
-				metaStatementHandler = (MetaObject) MetaObject.forObject(DEFAULT_OBJECT_FACTORY, object, DEFAULT_OBJECT_WRAPPER_FACTORY);
+				metaStatementHandler = (MetaObject) MetaObject.forObject(object, DEFAULT_OBJECT_FACTORY, DEFAULT_OBJECT_WRAPPER_FACTORY);
 			}
 		}
 
