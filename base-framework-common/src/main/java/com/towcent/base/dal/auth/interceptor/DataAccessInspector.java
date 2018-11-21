@@ -48,9 +48,7 @@ public class DataAccessInspector implements Interceptor {
 		StatementHandler statementHandler = (StatementHandler) invocation
 				.getTarget();
 
-		MetaObject metaStatementHandler = MetaObject.forObject(
-				statementHandler, DEFAULT_OBJECT_FACTORY,
-				DEFAULT_OBJECT_WRAPPER_FACTORY);
+		MetaObject metaStatementHandler = (MetaObject) MetaObject.forObject(statementHandler, DEFAULT_OBJECT_FACTORY, DEFAULT_OBJECT_WRAPPER_FACTORY);
 
 		// 分离代理对象链(由于目标类可能被多个拦截器拦截，从而形成多次代理，通过下面的两次循环
 		// 可以分离出最原始的的目标类)
@@ -64,8 +62,7 @@ public class DataAccessInspector implements Interceptor {
 				object = metaStatementHandler.getValue("target");
 			}
 			if (object != null) {
-				metaStatementHandler = MetaObject.forObject(object,
-						DEFAULT_OBJECT_FACTORY, DEFAULT_OBJECT_WRAPPER_FACTORY);
+				metaStatementHandler = (MetaObject) MetaObject.forObject(DEFAULT_OBJECT_FACTORY, object, DEFAULT_OBJECT_WRAPPER_FACTORY);
 			}
 		}
 
