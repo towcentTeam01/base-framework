@@ -5,12 +5,12 @@
 	<fileName>${ClassName}ControllerTest.java</fileName>
 	<content><![CDATA[
 import ${packageName}.${moduleName}.vo.input.${ClassName}${FunctionName}In;
-		descMap.put("${moduleName}/${ClassName}/${functionName}", "${interName}");
+		descMap.put("${moduleName}/${className}/${functionName}", "${interName}");
 	
 	
 	@Test
 	public void ${functionName}() throws IOException {
-		String path = "${moduleName}/${ClassName}/${functionName}";
+		String path = "${moduleName}/${className}/${functionName}";
 		${ClassName}${FunctionName}In paramVo = new ${ClassName}${FunctionName}In();
 		this.setCommonParam(paramVo);
 		

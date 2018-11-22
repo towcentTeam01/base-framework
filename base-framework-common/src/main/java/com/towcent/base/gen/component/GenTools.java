@@ -272,9 +272,8 @@ public class GenTools {
 
 	/**
 	 * 获取数据模型
-	 * 
-	 * @param genScheme
-	 * @param genTable
+	 *
+	 * @param gen
 	 * @return
 	 */
 	public static Map<String, Object> getDataModel(GenInterface gen) {
