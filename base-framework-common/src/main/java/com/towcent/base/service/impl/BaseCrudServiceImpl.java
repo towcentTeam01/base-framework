@@ -48,7 +48,7 @@ public abstract class BaseCrudServiceImpl implements BaseCrudService {
 	@Override
 	public <T> int add(T entity) throws ServiceException {
 		try {
-			return mapper.insert(entity);
+			return mapper.insertSelective(entity);
 		} catch (Exception e) {
 			throw new ServiceException("", e);
 		}
