@@ -1,9 +1,10 @@
 package com.towcent.base.manager.impl;
 
-import java.util.List;
-
-import javax.annotation.Resource;
-
+import cn.jiguang.common.resp.APIConnectionException;
+import cn.jiguang.common.resp.APIRequestException;
+import cn.jpush.api.JPushClient;
+import cn.jpush.api.push.PushResult;
+import cn.jpush.api.push.model.PushPayload;
 import com.gexin.rp.sdk.base.IPushResult;
 import com.gexin.rp.sdk.base.impl.SingleMessage;
 import com.gexin.rp.sdk.base.impl.Target;
@@ -11,36 +12,31 @@ import com.gexin.rp.sdk.exceptions.RequestException;
 import com.gexin.rp.sdk.http.IGtPush;
 import com.gexin.rp.sdk.template.NotificationTemplate;
 import com.gexin.rp.sdk.template.style.Style0;
-import com.towcent.base.common.config.SpringConfig;
-import com.towcent.base.common.model.GtPushDto;
-import com.towcent.base.common.utils.StringUtils;
-import org.springframework.stereotype.Service;
-import org.springframework.util.CollectionUtils;
-
 import com.towcent.base.common.exception.RpcException;
-import com.towcent.base.common.exception.ServiceException;
+import com.towcent.base.common.model.GtPushDto;
 import com.towcent.base.common.model.JPushDto;
 import com.towcent.base.common.model.PushMessage;
+import com.towcent.base.common.utils.StringUtils;
 import com.towcent.base.common.utils.push.JPushFactory;
 import com.towcent.base.common.utils.push.PayloadBuild;
 import com.towcent.base.manager.PushApi;
 import com.towcent.base.service.BaseService;
 import com.towcent.base.service.SysAppSessionService;
+import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
-import cn.jiguang.common.resp.APIConnectionException;
-import cn.jiguang.common.resp.APIRequestException;
-import cn.jpush.api.JPushClient;
-import cn.jpush.api.push.PushResult;
-import cn.jpush.api.push.model.PushPayload;
+import javax.annotation.Resource;
+import java.util.List;
 
 @Service
 public class PushApiImpl extends BaseService implements PushApi {
 	
 	@Resource 
 	private SysAppSessionService sessionApi;
-
+	// @Resource
+	// private SpringConfig springConfig;
 	@Resource
-	private SpringConfig springConfig;
+	private BaseCommonApiImpl baseCommonApi;
 
 	@Override
 	public void pushMsg(PushMessage message) throws RpcException {
@@ -92,8 +88,10 @@ public class PushApiImpl extends BaseService implements PushApi {
 
 	@Override
 	public void gtPushSingle(GtPushDto dto, String appId) throws RpcException {
-		IGtPush push = new IGtPush(springConfig.getGtAppKey(), springConfig.getGtMasterSecret());
-		NotificationTemplate template = notificationTemplate(dto, appId, springConfig.getGtAppKey());
+		String gtAppKey = baseCommonApi.getSysPropertyToString(0, "gt.push.appkey");
+		String gtMasterSecret = baseCommonApi.getSysPropertyToString(0, "gt.push.mastersecret");
+		IGtPush push = new IGtPush(gtAppKey, gtMasterSecret);
+		NotificationTemplate template = notificationTemplate(dto, appId, gtAppKey);
 
 		SingleMessage message = new SingleMessage();
 		message.setOffline(true);

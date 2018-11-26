@@ -112,7 +112,7 @@ public interface BaseCommonApi {
 	 * @return
 	 * @throws ServiceException
 	 */
-	JsSysConfig getSysPropertyByKey(Integer merchantId, String key) throws ServiceException;
+	JsSysConfig getSysPropertyByKey(Integer merchantId, String key) throws RpcException;
 	
 	/**
 	 * 获取属性值 -- 返回字符串.
@@ -121,7 +121,7 @@ public interface BaseCommonApi {
 	 * @return
 	 * @throws ServiceException
 	 */
-	String getSysPropertyToString(Integer merchantId, String key) throws ServiceException;
+	String getSysPropertyToString(Integer merchantId, String key) throws RpcException;
 	
 	/**
 	 * 获取属性值 -- 返回数字.
@@ -130,7 +130,7 @@ public interface BaseCommonApi {
 	 * @return
 	 * @throws ServiceException
 	 */
-	Integer getSysPropertyToInt(Integer merchantId, String key) throws ServiceException;
+	Integer getSysPropertyToInt(Integer merchantId, String key) throws RpcException;
 	
 	/**
 	 * 获取属性值 -- 返回布尔类型.
@@ -139,7 +139,7 @@ public interface BaseCommonApi {
 	 * @return
 	 * @throws ServiceException
 	 */
-	Boolean getSysPropertyToBoolean(Integer merchantId, String key) throws ServiceException;
+	Boolean getSysPropertyToBoolean(Integer merchantId, String key) throws RpcException;
 	
 	/**
 	 * 获取属性值 -- 返回double.
@@ -148,7 +148,7 @@ public interface BaseCommonApi {
 	 * @return
 	 * @throws ServiceException
 	 */
-	Double getSysPropertyToDouble(Integer merchantId, String key) throws ServiceException;
+	Double getSysPropertyToDouble(Integer merchantId, String key) throws RpcException;
 	
 	/**
 	 * 获取属性值 -- 返回浮点型.
@@ -157,5 +157,5 @@ public interface BaseCommonApi {
 	 * @return
 	 * @throws ServiceException
 	 */
-	BigDecimal getSysPropertyToBigDecimal(Integer merchantId, String key) throws ServiceException;
+	BigDecimal getSysPropertyToBigDecimal(Integer merchantId, String key) throws RpcException;
 }

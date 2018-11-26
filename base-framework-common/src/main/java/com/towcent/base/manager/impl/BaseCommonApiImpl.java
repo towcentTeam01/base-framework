@@ -157,32 +157,56 @@ public class BaseCommonApiImpl implements BaseCommonApi {
 	}
 
 	@Override
-	public JsSysConfig getSysPropertyByKey(Integer merchantId, String key) throws ServiceException {
-		return jsSysConfigService.getSysPropertyByKey(merchantId, key);
+	public JsSysConfig getSysPropertyByKey(Integer merchantId, String key) throws RpcException {
+		try {
+			return jsSysConfigService.getSysPropertyByKey(merchantId, key);
+		} catch (ServiceException e) {
+			throw new RpcException("", "", e);
+		}
 	}
 
 	@Override
-	public String getSysPropertyToString(Integer merchantId, String key) throws ServiceException {
-		return jsSysConfigService.getSysPropertyToString(merchantId, key);
+	public String getSysPropertyToString(Integer merchantId, String key) throws RpcException {
+		try {
+			return jsSysConfigService.getSysPropertyToString(merchantId, key);
+		} catch (ServiceException e) {
+			throw new RpcException("", "", e);
+		}
 	}
 
 	@Override
-	public Integer getSysPropertyToInt(Integer merchantId, String key) throws ServiceException {
-		return jsSysConfigService.getSysPropertyToInt(merchantId, key);
+	public Integer getSysPropertyToInt(Integer merchantId, String key) throws RpcException {
+		try {
+			return jsSysConfigService.getSysPropertyToInt(merchantId, key);
+		} catch (ServiceException e) {
+			throw new RpcException("", "", e);
+		}
 	}
 
 	@Override
-	public Boolean getSysPropertyToBoolean(Integer merchantId, String key) throws ServiceException {
-		return jsSysConfigService.getSysPropertyToBoolean(merchantId, key);
+	public Boolean getSysPropertyToBoolean(Integer merchantId, String key) throws RpcException {
+		try {
+			return jsSysConfigService.getSysPropertyToBoolean(merchantId, key);
+		} catch (ServiceException e) {
+			throw new RpcException("", "", e);
+		}
 	}
 
 	@Override
-	public Double getSysPropertyToDouble(Integer merchantId, String key) throws ServiceException {
-		return jsSysConfigService.getSysPropertyToDouble(merchantId, key);
+	public Double getSysPropertyToDouble(Integer merchantId, String key) throws RpcException {
+		try {
+			return jsSysConfigService.getSysPropertyToDouble(merchantId, key);
+		} catch (ServiceException e) {
+			throw new RpcException("", "", e);
+		}
 	}
 
 	@Override
-	public BigDecimal getSysPropertyToBigDecimal(Integer merchantId, String key) throws ServiceException {
-		return jsSysConfigService.getSysPropertyToBigDecimal(merchantId, key);
+	public BigDecimal getSysPropertyToBigDecimal(Integer merchantId, String key) throws RpcException {
+		try {
+			return jsSysConfigService.getSysPropertyToBigDecimal(merchantId, key);
+		} catch (ServiceException e) {
+			throw new RpcException("", "", e);
+		}
 	}
 }
