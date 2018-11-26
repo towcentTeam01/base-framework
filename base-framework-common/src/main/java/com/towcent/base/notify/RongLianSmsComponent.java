@@ -115,7 +115,7 @@ public class RongLianSmsComponent implements SmsComponent {
 				Set<String> keySet = data.keySet();
 				for (String key : keySet) {
 					Object object = data.get(key);
-					System.out.println(key + " = " + object);
+					// System.out.println(key + " = " + object);
 				}
 				HashMap<String, Object> data2 = (HashMap<String, Object>) data.get("templateSMS");
 				

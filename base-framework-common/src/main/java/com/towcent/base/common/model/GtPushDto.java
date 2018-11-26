@@ -16,7 +16,7 @@ public class GtPushDto implements Serializable {
     /**
      * 用户Id
      */
-    private String userId;
+    private String cid;
 
     /**
      * 通知栏标题

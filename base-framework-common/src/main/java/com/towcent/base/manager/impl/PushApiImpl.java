@@ -106,7 +106,7 @@ public class PushApiImpl extends BaseService implements PushApi {
 		// 推送范围 （cid与别名二选一）
 		Target target = new Target();
 		target.setAppId(appId);
-		target.setClientId(dto.getUserId() + "");
+		target.setClientId(dto.getCid());
 		// target.setAlias(Alias);
 
 		IPushResult ret = null;
