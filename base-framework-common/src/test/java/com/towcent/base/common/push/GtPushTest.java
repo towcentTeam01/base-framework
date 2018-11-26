@@ -20,7 +20,7 @@ public class GtPushTest extends BaseTest {
     @Test
     public void push() throws RpcException {
         GtPushDto dto = new GtPushDto();
-        dto.setUserId("12fe769da80814dcc95053566c915f1b");
+        dto.setCid("12fe769da80814dcc95053566c915f1b");
         dto.setTitle("我是推送标题");
         dto.setText("我是推送内容");
         dto.setLogoUrl("http://47.244.99.64:81/huangtao/upload/123.jpg");
