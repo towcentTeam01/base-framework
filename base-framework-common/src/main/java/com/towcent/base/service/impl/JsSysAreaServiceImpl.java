@@ -1,6 +1,7 @@
 package com.towcent.base.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -9,6 +10,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
+import com.towcent.base.common.constants.BaseConstant;
 import com.towcent.base.common.exception.ServiceException;
 import com.towcent.base.common.model.JsSysArea;
 import com.towcent.base.common.redis.RedisTemplateExt;
@@ -75,6 +78,13 @@ public class JsSysAreaServiceImpl extends BaseCrudServiceImpl implements JsSysAr
 			redisTemplateExt.set(key, area);
 			return area;
 		}	
+	}
+	@Override
+	public List<JsSysArea> getAreasListByParentCode(String code) throws ServiceException {
+		Map<String,Object> map=Maps.newHashMap();
+		map.put("parentCode", code);
+		map.put("status",BaseConstant.STRING_0);
+		return findByBiz(map);
 	}
 	
 	@Override

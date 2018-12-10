@@ -7,9 +7,9 @@ package com.towcent.base.common.constants;
  */
 public class BaseConstant {
 	
-	/** 是 */
+	/** 1 是 0 否 */
 	public static final String YES = "1";
-	/** 否 */
+	/** 1 是 0 否 */
 	public static final String NO = "0";
 	
 	/** 删除标记(0:正常, 1:删除) */
@@ -39,7 +39,10 @@ public class BaseConstant {
 	/** APP类型(1:一体机 2:医生 3:患者 **/
 	public static final byte APP_TYPE_3 = '3';
 
-	
+	/**
+	 * 0正常
+	 */
+	public static final String STRING_0 = "0";
 	/** 参数签名 */
 	public static final String SIGN = "sign";
 

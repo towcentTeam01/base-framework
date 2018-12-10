@@ -57,4 +57,9 @@ public interface JsSysAreaService extends BaseCrudService {
 	 * @return: Integer[]
 	 */
 	String[] getParentIdsById(String code) throws ServiceException; 
+	
+	/**
+	 * 根据parentCode获取区域信息
+	 */
+	List<JsSysArea> getAreasListByParentCode(String code) throws ServiceException;
 }
