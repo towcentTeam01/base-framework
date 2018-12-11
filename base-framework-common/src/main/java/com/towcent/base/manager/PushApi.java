@@ -43,5 +43,5 @@ public interface PushApi {
 	 * @param appId
 	 * @throws RpcException
 	 */
-	void gtPushSingle(GtPushDto dto, String appId) throws RpcException;
+	void gtPushSingle(GtPushDto dto, String appId, String gtAppKey, String gtMasterSecret) throws RpcException;
 }

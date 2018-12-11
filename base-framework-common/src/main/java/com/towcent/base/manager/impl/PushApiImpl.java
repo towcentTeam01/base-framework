@@ -87,9 +87,7 @@ public class PushApiImpl extends BaseService implements PushApi {
 	}
 
 	@Override
-	public void gtPushSingle(GtPushDto dto, String appId) throws RpcException {
-		String gtAppKey = baseCommonApi.getSysPropertyToString(0, "gt.push.appkey");
-		String gtMasterSecret = baseCommonApi.getSysPropertyToString(0, "gt.push.mastersecret");
+	public void gtPushSingle(GtPushDto dto, String appId, String gtAppKey, String gtMasterSecret) throws RpcException {
 		IGtPush push = new IGtPush(gtAppKey, gtMasterSecret);
 		NotificationTemplate template = notificationTemplate(dto, appId, gtAppKey);
 
