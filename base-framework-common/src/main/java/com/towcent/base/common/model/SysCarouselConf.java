@@ -61,7 +61,7 @@ public class SysCarouselConf implements Serializable {
 	/**
      * 创建者.
      */
-	private Integer createBy;
+	private String createBy;
 	
 	/**
      * 创建时间.
@@ -71,7 +71,7 @@ public class SysCarouselConf implements Serializable {
 	/**
      * 更新者.
      */
-	private Integer updateBy;
+	private String updateBy;
 	
 	/**
      * 更新时间.
