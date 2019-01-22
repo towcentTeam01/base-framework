@@ -43,11 +43,11 @@ public class SysCarouselConfMapperTest extends BaseTest {
 		// 备注
 		entity.setRemark("");
 		// 创建者
-		entity.setCreateBy(1);
+		entity.setCreateBy("1");
 		// 创建时间
 		entity.setCreateDate(new Date());
 		// 更新者
-		entity.setUpdateBy(1);
+		entity.setUpdateBy("1");
 		// 更新时间
 		entity.setUpdateDate(new Date());
 		// 删除标记(0:正常1:删除)
@@ -82,11 +82,11 @@ public class SysCarouselConfMapperTest extends BaseTest {
 		// 备注
 		entity.setRemark("");
 		// 创建者
-		entity.setCreateBy(1);
+		entity.setCreateBy("1");
 		// 创建时间
 		entity.setCreateDate(new Date());
 		// 更新者
-		entity.setUpdateBy(1);
+		entity.setUpdateBy("1");
 		// 更新时间
 		entity.setUpdateDate(new Date());
 		// 删除标记(0:正常1:删除)

@@ -10,9 +10,9 @@
 		<result column="target_url" property="targetUrl" jdbcType="VARCHAR" />
 		<result column="sort" property="sort" jdbcType="INTEGER" />
 		<result column="remark" property="remark" jdbcType="VARCHAR" />
-		<result column="create_by" property="createBy" jdbcType="INTEGER" />
+		<result column="create_by" property="createBy" jdbcType="VARCHAR" />
 		<result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
-		<result column="update_by" property="updateBy" jdbcType="INTEGER" />
+		<result column="update_by" property="updateBy" jdbcType="VARCHAR" />
 		<result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
 		<result column="del_flag" property="delFlag" jdbcType="CHAR" />
 		<result column="merchant_id" property="merchantId" jdbcType="INTEGER" />	
@@ -47,13 +47,13 @@
         		and a.remark = #{params.remark,jdbcType=VARCHAR}
       		</if>
       		<if test="params.createBy != null" >
-        		and a.create_by = #{params.createBy,jdbcType=INTEGER}
+        		and a.create_by = #{params.createBy,jdbcType=VARCHAR}
       		</if>
       		<if test="params.createDate != null" >
         		and a.create_date = #{params.createDate,jdbcType=TIMESTAMP}
       		</if>
       		<if test="params.updateBy != null" >
-        		and a.update_by = #{params.updateBy,jdbcType=INTEGER}
+        		and a.update_by = #{params.updateBy,jdbcType=VARCHAR}
       		</if>
       		<if test="params.updateDate != null" >
         		and a.update_date = #{params.updateDate,jdbcType=TIMESTAMP}
@@ -134,9 +134,9 @@
 			#{targetUrl,jdbcType=VARCHAR},
 			#{sort,jdbcType=INTEGER},
 			#{remark,jdbcType=VARCHAR},
-			#{createBy,jdbcType=INTEGER},
+			#{createBy,jdbcType=VARCHAR},
 			#{createDate,jdbcType=TIMESTAMP},
-			#{updateBy,jdbcType=INTEGER},
+			#{updateBy,jdbcType=VARCHAR},
 			#{updateDate,jdbcType=TIMESTAMP},
 			#{delFlag,jdbcType=CHAR},#{merchantId,jdbcType=INTEGER}
 		)
@@ -213,13 +213,13 @@
 	  			#{remark,jdbcType=VARCHAR},
 	  		</if>
       		<if test="createBy != null" >
-	  			#{createBy,jdbcType=INTEGER},
+	  			#{createBy,jdbcType=VARCHAR},
 	  		</if>
       		<if test="createDate != null" >
 	  			#{createDate,jdbcType=TIMESTAMP},
 	  		</if>
       		<if test="updateBy != null" >
-	  			#{updateBy,jdbcType=INTEGER},
+	  			#{updateBy,jdbcType=VARCHAR},
 	  		</if>
       		<if test="updateDate != null" >
 	  			#{updateDate,jdbcType=TIMESTAMP},
@@ -260,13 +260,13 @@
 	        	remark = #{remark,jdbcType=VARCHAR},
 	      	</if>
 	      	<if test="createBy != null" >
-	        	create_by = #{createBy,jdbcType=INTEGER},
+	        	create_by = #{createBy,jdbcType=VARCHAR},
 	      	</if>
 	      	<if test="createDate != null" >
 	        	create_date = #{createDate,jdbcType=TIMESTAMP},
 	      	</if>
 	      	<if test="updateBy != null" >
-	        	update_by = #{updateBy,jdbcType=INTEGER},
+	        	update_by = #{updateBy,jdbcType=VARCHAR},
 	      	</if>
 	      	<if test="updateDate != null" >
 	        	update_date = #{updateDate,jdbcType=TIMESTAMP},
@@ -290,9 +290,9 @@
 			target_url = #{targetUrl,jdbcType=VARCHAR},
 			sort = #{sort,jdbcType=INTEGER},
 			remark = #{remark,jdbcType=VARCHAR},
-			create_by = #{createBy,jdbcType=INTEGER},
+			create_by = #{createBy,jdbcType=VARCHAR},
 			create_date = #{createDate,jdbcType=TIMESTAMP},
-			update_by = #{updateBy,jdbcType=INTEGER},
+			update_by = #{updateBy,jdbcType=VARCHAR},
 			update_date = #{updateDate,jdbcType=TIMESTAMP},
 			del_flag = #{delFlag,jdbcType=CHAR},
 			merchant_id = #{merchantId,jdbcType=INTEGER} 
