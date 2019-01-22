@@ -27,7 +27,7 @@ import org.springframework.stereotype.Service;
  * @Copyright: 2018 www.songywang.com Inc. All rights reserved. 
  * 注意：本内容仅限于深圳市众旺网络科技有限公司内部传阅，禁止外泄以及用于其他的商业项目
  */
-@Service
+// @Service
 public class WeixinMaService extends WxMaServiceImpl {
 
 	private RedisTemplateExt<String, Object> redisTemplateExt;
