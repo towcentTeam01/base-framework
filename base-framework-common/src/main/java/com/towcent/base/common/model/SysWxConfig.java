@@ -56,6 +56,10 @@ public class SysWxConfig implements Serializable {
      * 商户Id.
      */
 	private Integer merchantId;
-	
-	
+
+	/**
+	 * 平台类型 0:微信公众号 1：微信小程序 2:支付宝生活号
+	 */
+	private String platformType;
+
 }

@@ -10,9 +10,10 @@
 		<result column="wx_remark" property="wxRemark" jdbcType="VARCHAR" />
 		<result column="is_service" property="isService" jdbcType="CHAR" />
 		<result column="merchant_id" property="merchantId" jdbcType="INTEGER" />
+		<result column="platform_type" property=" platformType" jdbcType="VARCHAR" />
   	</resultMap>
   	<sql id="Base_Column_List" >
-  	  	a.id, a.appid, a.wx_appsecret, a.wx_token, a.wx_aeskey, a.wx_remark, a.is_service, a.merchant_id
+  	  	a.id, a.appid, a.wx_appsecret, a.wx_token, a.wx_aeskey, a.wx_remark, a.is_service, a.merchant_id, a.platform_type
   	</sql>
 	<sql id="condition" >
     	<if test="null!=params" >
@@ -39,6 +40,9 @@
       		</if>
       		<if test="params.merchantId != null" >
         		and a.merchant_id = #{params.merchantId,jdbcType=INTEGER}
+      		</if>
+      		<if test="params.platformType != null" >
+        		and a.platform_type = #{params.platformType,jdbcType=VARCHAR}
       		</if>
       	</if>
   	</sql>
@@ -91,7 +95,8 @@
 			wx_aeskey,
 			wx_remark,
 			is_service,
-			merchant_id
+			merchant_id,
+		platform_type
     	)
     	values (
 					#{id,jdbcType=INTEGER},
@@ -101,7 +106,8 @@
 			#{wxAeskey,jdbcType=VARCHAR},
 			#{wxRemark,jdbcType=VARCHAR},
 			#{isService,jdbcType=CHAR},
-			#{merchantId,jdbcType=INTEGER}
+			#{merchantId,jdbcType=INTEGER},
+			#{platformType,jdbcType=VARCHAR}
 		)
   	</insert>
 	<insert id="insertSelective" parameterType="com.towcent.base.common.model.SysWxConfig" useGeneratedKeys="true" keyProperty="id" >
@@ -131,6 +137,9 @@
       		<if test="merchantId != null" >
       			merchant_id,
       		</if>
+      		<if test="platformType != null" >
+				platform_type,
+      		</if>
     	</trim>
     	<trim prefix="values (" suffix=")" suffixOverrides="," >
       		<if test="id != null" >
@@ -156,6 +165,9 @@
 	  		</if>
       		<if test="merchantId != null" >
 	  			#{merchantId,jdbcType=INTEGER},
+	  		</if>
+      		<if test="platformType != null" >
+	  			#{platformType,jdbcType=VARCHAR},
 	  		</if>
     	</trim>
   	</insert>
@@ -186,6 +198,9 @@
 	      	<if test="merchantId != null" >
 	        	merchant_id = #{merchantId,jdbcType=INTEGER},
 	      	</if>
+	      	<if test="platformType != null" >
+				platform_type = #{platformType,jdbcType=VARCHAR},
+	      	</if>
     	</set>
     	where id = #{id,jdbcType=INTEGER}
   	</update>
@@ -199,7 +214,8 @@
       		wx_aeskey = #{wxAeskey,jdbcType=VARCHAR},
       		wx_remark = #{wxRemark,jdbcType=VARCHAR},
       		is_service = #{isService,jdbcType=CHAR},
-      		merchant_id = #{merchantId,jdbcType=INTEGER} 
+      		merchant_id = #{merchantId,jdbcType=INTEGER},
+		platform_type = #{platformType,jdbcType=VARCHAR}
     	where id = #{id,jdbcType=INTEGER}
   	</update>
 </mapper>

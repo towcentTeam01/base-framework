@@ -37,19 +37,19 @@ import com.towcent.base.wx.config.WxMpConfig;
 public class WxInstanceFactory implements InitializingBean {
 
 	// 微信公众号
-	private static Map<Integer, WeixinService> instanceMaps = Maps.newHashMap();
+	private static Map<String, WeixinService> instanceMaps = Maps.newHashMap();
 	
 	// 微信小程序
-	private static Map<Integer, WeixinMaService> miniAppInstanceMaps = Maps.newHashMap();
+	private static Map<String, WeixinMaService> miniAppInstanceMaps = Maps.newHashMap();
 	
-	public WeixinService getInstance(Integer merchantId) {
+	public WeixinService getInstance(Integer merchantId, String platformType) {
 		inspectExist(merchantId);
-		return instanceMaps.get(merchantId);
+		return instanceMaps.get(merchantId + platformType);
 	}
 	
-	public WeixinMaService getMiniAppInstance(Integer merchantId) {
+	public WeixinMaService getMiniAppInstance(Integer merchantId, String platformType) {
 		inspectExist(merchantId);
-		return miniAppInstanceMaps.get(merchantId);
+		return miniAppInstanceMaps.get(merchantId + platformType);
 	}
 	
 	@Override
@@ -70,8 +70,8 @@ public class WxInstanceFactory implements InitializingBean {
 				wxConfig.setToken(config.getWxToken());
 				wxConfig.setAesKey(config.getWxAeskey());
 				
-				instanceMaps.put(config.getMerchantId(), new WeixinService(wxConfig));
-				miniAppInstanceMaps.put(config.getMerchantId(), new WeixinMaService(wxConfig));
+				instanceMaps.put(config.getMerchantId() + config.getPlatformType(), new WeixinService(wxConfig));
+				miniAppInstanceMaps.put(config.getMerchantId() + config.getPlatformType(), new WeixinMaService(wxConfig));
 			}
 		}
 	}
@@ -101,8 +101,8 @@ public class WxInstanceFactory implements InitializingBean {
 						wxConfig.setToken(config.getWxToken());
 						wxConfig.setAesKey(config.getWxAeskey());
 						
-						instanceMaps.put(merchantId, new WeixinService(wxConfig));
-						miniAppInstanceMaps.put(config.getMerchantId(), new WeixinMaService(wxConfig));
+						instanceMaps.put(merchantId + config.getPlatformType(), new WeixinService(wxConfig));
+						miniAppInstanceMaps.put(config.getMerchantId() + config.getPlatformType(), new WeixinMaService(wxConfig));
 					}
 				}
 			}
