@@ -10,7 +10,7 @@
 		<result column="wx_remark" property="wxRemark" jdbcType="VARCHAR" />
 		<result column="is_service" property="isService" jdbcType="CHAR" />
 		<result column="merchant_id" property="merchantId" jdbcType="INTEGER" />
-		<result column="platform_type" property=" platformType" jdbcType="VARCHAR" />
+		<result column="platform_type" property="platformType" jdbcType="VARCHAR" />
   	</resultMap>
   	<sql id="Base_Column_List" >
   	  	a.id, a.appid, a.wx_appsecret, a.wx_token, a.wx_aeskey, a.wx_remark, a.is_service, a.merchant_id, a.platform_type
