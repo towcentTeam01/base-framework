@@ -28,7 +28,7 @@ public class BaseCommonParam extends PageVo implements Serializable {
 	 */
 	@NotNull(message="设备类型不能为空")
 	@Min(value=1, message="设备类型只能为(1:Ios 2:Android 3:pad 4:h5)")
-	@Max(value=4, message="设备类型只能为(1:Ios 2:Android 3:pad 4:h5)")
+	@Max(value=7, message="设备类型只能为(1:Ios 2:Android 3:pad 4:h5)")
 	private Byte sysType;
 	
 	/**
