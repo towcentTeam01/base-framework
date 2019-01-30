@@ -28,6 +28,8 @@ public interface JsSysAreaService extends BaseCrudService {
 	 */
 	JsSysArea getAreaById(String code) throws ServiceException;
 	
+	JsSysArea getAreaByName(String name) throws ServiceException;
+	
 	/**
 	 * @Title: getParentAreasById
 	 * @Description: 通过id获取所有父级对象集合.

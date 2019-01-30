@@ -80,6 +80,14 @@ public class JsSysAreaServiceImpl extends BaseCrudServiceImpl implements JsSysAr
 		}	
 	}
 	@Override
+	public JsSysArea getAreaByName(String name) throws ServiceException {
+		if(name == null) {
+			return null;
+		}
+		JsSysArea area = findByKeyValSingle("areaName", name);
+		return area;
+	}
+	@Override
 	public List<JsSysArea> getAreasListByParentCode(String code) throws ServiceException {
 		Map<String,Object> map=Maps.newHashMap();
 		map.put("parentCode", code);
