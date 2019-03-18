@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<template>
+	<name>test</name>
+	<filePath>src/test/java/${packageName}/client/${moduleName}</filePath>
+	<fileName>${ClassName}ControllerTest.java</fileName>
+	<content><![CDATA[
+import ${packageName}.${moduleName}.vo.input.${ClassName}${FunctionName}In;
+		descMap.put("${moduleName}/${className}/${functionName}", "${interName}");
+	
+	
+	@Test
+	public void ${functionName}() throws IOException {
+		String path = "${moduleName}/${className}/${functionName}";
+		${ClassName}${FunctionName}In paramVo = new ${ClassName}${FunctionName}In();
+		this.setCommonParam(paramVo);
+		<#if isLogin == '1'>
+		this.setLoginFlag(paramVo);
+		</#if>
+
+		<#list enParamList as c>
+			<#if c.fieldType?cap_first == 'String'>
+		paramVo.set${c.fieldName?cap_first}("${c.example}");
+			<#elseif c.fieldType?cap_first == 'Integer'>
+		paramVo.set${c.fieldName?cap_first}(${c.example});
+			<#elseif c.fieldType?cap_first == 'Long'>
+		paramVo.set${c.fieldName?cap_first}(${c.example}l);
+			<#elseif c.fieldType?cap_first == 'Double'>
+		paramVo.set${c.fieldName?cap_first}(new BigDecimal("${c.example}"));
+			<#elseif c.fieldType?cap_first == 'Date'>
+		paramVo.set${c.fieldName?cap_first}(DateUtils.parseDate("${c.example}"));
+			<#else>
+		paramVo.set${c.fieldName?cap_first}(null);
+			</#if>
+		</#list>
+		String content = sendHttp(paramVo, path);
+		System.out.println(content);
+	}
+
+]]>
+	</content>
+</template>

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<template>
+	<name>serviceImpl</name>
+	<filePath>src/main/java/${packageName}/${moduleName}/biz/impl</filePath>
+	<fileName>${ClassName}ServiceImpl.java</fileName>
+	<content><![CDATA[
+
+import ${packageName}.${moduleName}.vo.input.${ClassName}${FunctionName}In;
+import ${packageName}.${moduleName}.vo.output.${ClassName}${FunctionName}Out;
+	||
+	
+	@Override
+	public ResultVo ${functionName}(${ClassName}${FunctionName}In paramIn) {
+		ResultVo resultVo = new ResultVo();
+		if (!validationObj(paramIn, resultVo)) {
+			return resultVo;
+		}
+//		try {
+			// TODO 在此处填充需要的业务逻辑
+			<#if outParamType??>
+				<#if outParamType == 'object'>
+			${ClassName}${FunctionName}Out outParam = new ${ClassName}${FunctionName}Out();
+			<#list outParamList as c>
+				<#if c.fieldType?cap_first == 'String'>
+			outParam.set${c.fieldName?cap_first}("${c.example}");
+				<#elseif c.fieldType?cap_first == 'Integer'>
+			outParam.set${c.fieldName?cap_first}(${c.example});
+				<#elseif c.fieldType?cap_first == 'Long'>
+			outParam.set${c.fieldName?cap_first}(${c.example}l);
+				<#elseif c.fieldType?cap_first == 'Double'>
+			outParam.set${c.fieldName?cap_first}(new BigDecimal("${c.example}"));
+				<#elseif c.fieldType?cap_first == 'Date'>
+			outParam.set${c.fieldName?cap_first}(DateUtils.parseDate("${c.example}"));
+				<#elseif c.fieldType?cap_first == 'List'>
+			outParam.set${c.fieldName?cap_first}(null);
+				<#elseif c.fieldType?cap_first == 'Object'>
+			outParam.set${c.fieldName?cap_first}(null);
+				<#elseif c.fieldType?cap_first == 'Page'>
+			outParam.set${c.fieldName?cap_first}(null);
+				<#else>
+			outParam.set${c.fieldName?cap_first}(null);
+				</#if>
+			</#list>
+			resultVo.setData(outParam);
+
+				<#elseif outParamType == 'list'>
+			List<${ClassName}${FunctionName}Out> outList = Lists.newArrayList();
+			${ClassName}${FunctionName}Out outParam = new ${ClassName}${FunctionName}Out();
+			<#list outParamList as c>
+				<#if c.fieldType?cap_first == 'String'>
+			outParam.set${c.fieldName?cap_first}("${c.example}");
+				<#elseif c.fieldType?cap_first == 'Integer'>
+			outParam.set${c.fieldName?cap_first}(${c.example});
+				<#elseif c.fieldType?cap_first == 'Long'>
+			outParam.set${c.fieldName?cap_first}(${c.example}l);
+				<#elseif c.fieldType?cap_first == 'Double'>
+			outParam.set${c.fieldName?cap_first}(new BigDecimal("${c.example}"));
+				<#elseif c.fieldType?cap_first == 'Date'>
+			outParam.set${c.fieldName?cap_first}(DateUtils.parseDate("${c.example}"));
+				<#elseif c.fieldType?cap_first == 'List'>
+			outParam.set${c.fieldName?cap_first}(null);
+				<#elseif c.fieldType?cap_first == 'Object'>
+			outParam.set${c.fieldName?cap_first}(null);
+				<#elseif c.fieldType?cap_first == 'Page'>
+			outParam.set${c.fieldName?cap_first}(null);
+				<#else>
+			outParam.set${c.fieldName?cap_first}(null);
+				</#if>
+			</#list>
+			outList.add(outParam);
+			resultVo.setData(outList);
+
+				<#elseif outParamType == 'page'>
+			SimplePageDto page = this.buildPage(paramIn);
+			List<${ClassName}${FunctionName}Out> outList = Lists.newArrayList();
+			${ClassName}${FunctionName}Out outParam = new ${ClassName}${FunctionName}Out();
+			<#list outParamList as c>
+				<#if c.fieldType?cap_first == 'String'>
+			outParam.set${c.fieldName?cap_first}("${c.example}");
+				<#elseif c.fieldType?cap_first == 'Integer'>
+			outParam.set${c.fieldName?cap_first}(${c.example});
+				<#elseif c.fieldType?cap_first == 'Long'>
+			outParam.set${c.fieldName?cap_first}(${c.example}l);
+				<#elseif c.fieldType?cap_first == 'Double'>
+			outParam.set${c.fieldName?cap_first}(new BigDecimal("${c.example}"));
+				<#elseif c.fieldType?cap_first == 'Date'>
+			outParam.set${c.fieldName?cap_first}(DateUtils.parseDate("${c.example}"));
+				<#elseif c.fieldType?cap_first == 'List'>
+			outParam.set${c.fieldName?cap_first}(null);
+				<#elseif c.fieldType?cap_first == 'Object'>
+			outParam.set${c.fieldName?cap_first}(null);
+				<#elseif c.fieldType?cap_first == 'Page'>
+			outParam.set${c.fieldName?cap_first}(null);
+				<#else>
+			outParam.set${c.fieldName?cap_first}(null);
+				</#if>
+			</#list>
+			outList.add(outParam);
+			PaginationDto<${ClassName}${FunctionName}Out> outPage = new PaginationDto<${ClassName}${FunctionName}Out>(outList.size(), outList);
+			resultVo.setData(outPage);
+				</#if>
+			</#if>
+//		} catch (RpcException e) {
+//			assemblyVo(resultVo, E_001, "失败");
+//			logger.error("", e);
+//		}
+		return resultVo;
+	}
+]]>
+	</content>
+</template>
