@@ -20,7 +20,7 @@ public class GtPushTest extends BaseTest {
         dto.setTitle("我是推送标题");
         dto.setText("我是推送内容");
         dto.setLogoUrl("http://47.244.99.64:81/huangtao/upload/123.jpg");
-//        pushApi.gtPushSingle(dto, "");
+        // pushApi.gtPushSingle(dto, "");
 
         System.out.println("===================>");
     }

@@ -16,8 +16,8 @@ public class SpiderServiceTest extends BaseTest {
 	@Test
 	public void spider() throws RpcException {
 		SpiderProcesser spiderProcesser = new SpiderProcesser();
-		spiderProcesser.setServiceId("xicdlSpiderHandle");
-		spiderProcesser.spider();
+//		spiderProcesser.setServiceId("xicdlSpiderHandle");
+//		spiderProcesser.spider();
 	}
 
 }

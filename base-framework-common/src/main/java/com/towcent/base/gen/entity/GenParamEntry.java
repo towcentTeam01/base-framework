@@ -8,8 +8,16 @@ public class GenParamEntry {
 	private String description;
 	private String maxLength;
 	private String simpleJavaType;
-	
-	private boolean notBaseField = false; // 是否为基础类型
+
+	// 是否为基础类型
+	private boolean notBaseField = false;
+
+	/** 关联的对象Id */
+	private String objId;
+	/** 输出格式 */
+	private String outFormat;
+	/** 示例值 */
+	private String example;
 	
 	public String getFieldName() {
 		return fieldName;
@@ -63,5 +71,28 @@ public class GenParamEntry {
 	public void setMaxLength(String maxLength) {
 		this.maxLength = maxLength;
 	}
-	
+
+	public String getObjId() {
+		return objId;
+	}
+
+	public void setObjId(String objId) {
+		this.objId = objId;
+	}
+
+	public String getOutFormat() {
+		return outFormat;
+	}
+
+	public void setOutFormat(String outFormat) {
+		this.outFormat = outFormat;
+	}
+
+	public String getExample() {
+		return example;
+	}
+
+	public void setExample(String example) {
+		this.example = example;
+	}
 }

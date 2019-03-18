@@ -25,20 +25,20 @@ import com.towcent.base.common.model.BaseSolrjQueryModel;
  * @since [产品/模块版本]
  */
 public interface SolrManager {
-	public Map<String, Object> add(BaseSolrjModel baseModel) throws Exception;
-
-	public Map<String, Object> update(BaseSolrjModel baseModel)
-			throws Exception;
-
-	public Map<String, Object> deleteById(String solrAlias, String id)
-			throws Exception;
-
-	public Map<String, Object> deleteByIds(String solrAlias, List<String> ids)
-			throws Exception;
-
-	public Map<String, Object> deleteByQuery(String solrAlias, String query)
-			throws Exception;
-
-	public Map<Object, Object> query(BaseSolrjQueryModel baseQueryModel,
-			Class<?> classType) throws Exception;
+//	public Map<String, Object> add(BaseSolrjModel baseModel) throws Exception;
+//
+//	public Map<String, Object> update(BaseSolrjModel baseModel)
+//			throws Exception;
+//
+//	public Map<String, Object> deleteById(String solrAlias, String id)
+//			throws Exception;
+//
+//	public Map<String, Object> deleteByIds(String solrAlias, List<String> ids)
+//			throws Exception;
+//
+//	public Map<String, Object> deleteByQuery(String solrAlias, String query)
+//			throws Exception;
+//
+//	public Map<Object, Object> query(BaseSolrjQueryModel baseQueryModel,
+//			Class<?> classType) throws Exception;
 }
