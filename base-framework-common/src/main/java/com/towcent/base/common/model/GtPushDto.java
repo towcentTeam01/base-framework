@@ -41,4 +41,6 @@ public class GtPushDto implements Serializable {
     /** 扩展参数 */
     private Map<String, String> extraMap;
 
+    private boolean iosFlag;
+
 }

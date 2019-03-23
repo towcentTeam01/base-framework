@@ -6,12 +6,18 @@ import cn.jpush.api.JPushClient;
 import cn.jpush.api.push.PushResult;
 import cn.jpush.api.push.model.PushPayload;
 import com.gexin.rp.sdk.base.IPushResult;
+import com.gexin.rp.sdk.base.IQueryResult;
 import com.gexin.rp.sdk.base.impl.SingleMessage;
 import com.gexin.rp.sdk.base.impl.Target;
+import com.gexin.rp.sdk.base.payload.APNPayload;
+import com.gexin.rp.sdk.base.payload.MultiMedia;
 import com.gexin.rp.sdk.exceptions.RequestException;
 import com.gexin.rp.sdk.http.IGtPush;
+import com.gexin.rp.sdk.template.AbstractTemplate;
 import com.gexin.rp.sdk.template.NotificationTemplate;
+import com.gexin.rp.sdk.template.TransmissionTemplate;
 import com.gexin.rp.sdk.template.style.Style0;
+import com.google.common.collect.Lists;
 import com.towcent.base.common.exception.RpcException;
 import com.towcent.base.common.model.GtPushDto;
 import com.towcent.base.common.model.JPushDto;
@@ -27,6 +33,7 @@ import org.springframework.util.CollectionUtils;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class PushApiImpl extends BaseService implements PushApi {
@@ -89,7 +96,12 @@ public class PushApiImpl extends BaseService implements PushApi {
 	@Override
 	public void gtPushSingle(GtPushDto dto, String appId, String gtAppKey, String gtMasterSecret) throws RpcException {
 		IGtPush push = new IGtPush(gtAppKey, gtMasterSecret);
-		NotificationTemplate template = notificationTemplate(dto, appId, gtAppKey);
+		AbstractTemplate template = null;
+		if (dto.isIosFlag()) {
+			template = transmissionTemplate(dto, appId, gtAppKey);
+		} else {
+			template = notificationTemplate(dto, appId, gtAppKey);
+		}
 
 		SingleMessage message = new SingleMessage();
 		message.setOffline(true);
@@ -103,7 +115,6 @@ public class PushApiImpl extends BaseService implements PushApi {
 		Target target = new Target();
 		target.setAppId(appId);
 		target.setClientId(dto.getCid());
-		// target.setAlias(Alias);
 
 		IPushResult ret = null;
 		try {
@@ -119,6 +130,26 @@ public class PushApiImpl extends BaseService implements PushApi {
 		}
 	}
 
+	@Override
+	public void clearIOSBadgeForCid(String cid, String appId, String gtAppKey, String gtMasterSecret) throws RpcException {
+		IGtPush push = new IGtPush(gtAppKey, gtMasterSecret);
+		List<String> cidList = Lists.newArrayList();
+		cidList.add(cid);
+		IQueryResult res = push.setBadgeForCID("0", appId, cidList);
+		Map<String, Object> resp = res.getResponse();
+		if (!"Success".equalsIgnoreCase((String) resp.get("result"))) {
+			logger.error(resp.toString());
+		}
+	}
+
+	/**
+	 * 普通模板<br />
+	 * 在通知栏显示一条含图标、标题的通知，用户点击后激活您的应用
+	 * @param dto
+	 * @param appId
+	 * @param appkey
+	 * @return
+	 */
 	private NotificationTemplate notificationTemplate(GtPushDto dto, String appId, String appkey) {
 		NotificationTemplate template = new NotificationTemplate();
 		// 设置APPID与APPKEY
@@ -126,9 +157,8 @@ public class PushApiImpl extends BaseService implements PushApi {
 		template.setAppkey(appkey);
 		// 透传消息设置，1为强制启动应⽤用，客户端接收到消息后就会⽴立即启动应⽤用；2为等待应⽤用启动
 		template.setTransmissionType(1);
-		template.setTransmissionContent("请输⼊入您要透传的内容");
-		// 设置定时展示时间
-		// template.setDuration("2015-01-16 11:40:00", "2015-01-16 12:24:00");
+		template.setTransmissionContent("");
+		/* 设置定时展示时间 Template.setDuration("2015-01-16 11:40:00", "2015-01-16 12:24:00"); */
 		Style0 style = new Style0();
 		// 设置通知栏标题与内容
 		style.setTitle(dto.getTitle());
@@ -147,5 +177,45 @@ public class PushApiImpl extends BaseService implements PushApi {
 		style.setClearable(true);
 		template.setStyle(style);
 		return template;
+	}
+
+	/**
+	 * 透传消息模板<br/>
+	 * 透传消息是指消息传递到客户端只有消息内容，展现形式由客户端自行定义。客户端可自定义通知的展现形式，也可自定义通知到达之后的动作，或者不做任何展现。iOS推送也使用该模板。
+	 * @param dto
+	 * @param appId
+	 * @param appkey
+	 * @return
+	 */
+	private TransmissionTemplate transmissionTemplate(GtPushDto dto, String appId, String appkey) {
+		TransmissionTemplate template = new TransmissionTemplate();
+		template.setAppId(appId);
+		template.setAppkey(appkey);
+		// 透传消息设置，1为强制启动应用，客户端接收到消息后就会立即启动应用；2为等待应用启动
+		template.setTransmissionType(1);
+		template.setTransmissionContent(null);
+		/* 设置定时展示时间 template.setDuration("2015-01-16 11:40:00", "2015-01-16 12:24:00"); */
+
+		// IOS APNs消息
+		APNPayload payload = new APNPayload();
+		payload.setAutoBadge("+1");
+		payload.setContentAvailable(1);
+		// ios 12.0 以上可以使用 Dictionary 类型的 sound
+		payload.setSound("default");
+		// payload.setCategory("$由客户端定义");
+		// payload.addCustomMsg("payload", "payload");
+
+		// 字典模式使用APNPayload.DictionaryAlertMsg
+		payload.setAlertMsg(getDictionaryAlertMsg(dto));
+
+		template.setAPNInfo(payload);
+		return template;
+	}
+
+	public APNPayload.DictionaryAlertMsg getDictionaryAlertMsg(GtPushDto dto) {
+		APNPayload.DictionaryAlertMsg msg = new APNPayload.DictionaryAlertMsg();
+		msg.setTitle(dto.getTitle());
+		msg.setBody(dto.getText());
+		return msg;
 	}
 }

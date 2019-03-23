@@ -44,4 +44,15 @@ public interface PushApi {
 	 * @throws RpcException
 	 */
 	void gtPushSingle(GtPushDto dto, String appId, String gtAppKey, String gtMasterSecret) throws RpcException;
+
+	/**
+	 * 清除IOS角标
+	 * @param cid     设备在个推服务器的唯一标识
+	 * @param appId
+	 * @param gtAppKey
+	 * @param gtMasterSecret
+	 * @throws RpcException
+	 */
+	void clearIOSBadgeForCid(String cid, String appId, String gtAppKey, String gtMasterSecret) throws RpcException;
+
 }
