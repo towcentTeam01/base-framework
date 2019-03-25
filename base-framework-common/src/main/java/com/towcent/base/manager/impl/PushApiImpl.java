@@ -5,6 +5,7 @@ import cn.jiguang.common.resp.APIRequestException;
 import cn.jpush.api.JPushClient;
 import cn.jpush.api.push.PushResult;
 import cn.jpush.api.push.model.PushPayload;
+import com.alibaba.fastjson.JSON;
 import com.gexin.rp.sdk.base.IPushResult;
 import com.gexin.rp.sdk.base.IQueryResult;
 import com.gexin.rp.sdk.base.impl.SingleMessage;
@@ -18,7 +19,9 @@ import com.gexin.rp.sdk.template.NotificationTemplate;
 import com.gexin.rp.sdk.template.TransmissionTemplate;
 import com.gexin.rp.sdk.template.style.Style0;
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import com.towcent.base.common.exception.RpcException;
+import com.towcent.base.common.model.GtAps;
 import com.towcent.base.common.model.GtPushDto;
 import com.towcent.base.common.model.JPushDto;
 import com.towcent.base.common.model.PushMessage;
@@ -32,6 +35,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -157,7 +161,12 @@ public class PushApiImpl extends BaseService implements PushApi {
 		template.setAppkey(appkey);
 		// 透传消息设置，1为强制启动应⽤用，客户端接收到消息后就会⽴立即启动应⽤用；2为等待应⽤用启动
 		template.setTransmissionType(1);
-		template.setTransmissionContent("");
+		Map<String, Object> transmissionObj = Maps.newHashMap();
+		Map<String, Object> apsMap = Maps.newHashMap();
+		apsMap.put("title", dto.getTitle());
+		apsMap.put("body", dto.getText());
+		transmissionObj.put("aps", apsMap);
+		template.setTransmissionContent(JSON.toJSONString(transmissionObj));
 		/* 设置定时展示时间 Template.setDuration("2015-01-16 11:40:00", "2015-01-16 12:24:00"); */
 		Style0 style = new Style0();
 		// 设置通知栏标题与内容
@@ -193,7 +202,20 @@ public class PushApiImpl extends BaseService implements PushApi {
 		template.setAppkey(appkey);
 		// 透传消息设置，1为强制启动应用，客户端接收到消息后就会立即启动应用；2为等待应用启动
 		template.setTransmissionType(1);
-		template.setTransmissionContent(null);
+		Map<String, Object> json = Maps.newHashMap();
+		GtAps aps = new GtAps();
+		GtAps.GtAlert alert = new GtAps.GtAlert();
+		alert.setTitle(dto.getTitle());
+		alert.setBody(dto.getText());
+		alert.setPromptFlag("1");
+		aps.setAlert(alert);
+		Map<String, Object> apsMap = new HashMap<String, Object>(1) {
+			{
+				put("aps", aps);
+			}
+		};
+		json.put("payload", JSON.toJSONString(apsMap));
+		template.setTransmissionContent(JSON.toJSONString(json));
 		/* 设置定时展示时间 template.setDuration("2015-01-16 11:40:00", "2015-01-16 12:24:00"); */
 
 		// IOS APNs消息
