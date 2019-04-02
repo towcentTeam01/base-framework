@@ -105,7 +105,7 @@ public class ThumbnailatorUtil {
 	 * 按指定像素进行压缩(等比缩放).
 	 * @Title thumbnail
 	 * @param pixels          压缩尺寸(等比缩放  eg.300X300)
-	 * @param srcFile     原图文件(将要压缩的图片)
+	 * @param file     原图文件(将要压缩的图片)
 	 * @param destFilePath    压缩后的图片Path
 	 * @throws IOException 
 	 */
@@ -118,7 +118,16 @@ public class ThumbnailatorUtil {
 			logger.error("生成缩略图异常.", e);
 		}
 	}
-	
+
+	public static void thumbnailQuality(String srcFilePath, String destFilePath) {
+		try {
+			File file = new File(srcFilePath);
+			Thumbnails.of(file).scale(1f).outputQuality(0.8f).toFile(destFilePath);
+		} catch (IOException e) {
+			logger.error("生成缩略图异常.", e);
+		}
+	}
+
 //	public static String generateCode(String codeUrl, Integer userId, String userName) {
 //		Font font = new Font("微软雅黑", Font.PLAIN, 30);// 添加字体的属性设置
 //		

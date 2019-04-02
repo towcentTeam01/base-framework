@@ -161,12 +161,21 @@ public class PushApiImpl extends BaseService implements PushApi {
 		template.setAppkey(appkey);
 		// 透传消息设置，1为强制启动应⽤用，客户端接收到消息后就会⽴立即启动应⽤用；2为等待应⽤用启动
 		template.setTransmissionType(1);
-		Map<String, Object> transmissionObj = Maps.newHashMap();
-		Map<String, Object> apsMap = Maps.newHashMap();
-		apsMap.put("title", dto.getTitle());
-		apsMap.put("body", dto.getText());
-		transmissionObj.put("aps", apsMap);
-		template.setTransmissionContent(JSON.toJSONString(transmissionObj));
+		Map<String, Object> json = Maps.newHashMap();
+		GtAps aps = new GtAps();
+		GtAps.GtAlert alert = new GtAps.GtAlert();
+		alert.setTitle(dto.getTitle());
+		alert.setBody(dto.getText());
+		alert.setPromptFlag("1");
+		aps.setAlert(alert);
+		Map<String, Object> apsMap = new HashMap<String, Object>(1) {
+			{
+				put("aps", aps);
+			}
+		};
+		json.put("payload", JSON.toJSONString(apsMap));
+		// JSON.toJSONString(json)
+		template.setTransmissionContent(null);
 		/* 设置定时展示时间 Template.setDuration("2015-01-16 11:40:00", "2015-01-16 12:24:00"); */
 		Style0 style = new Style0();
 		// 设置通知栏标题与内容
@@ -230,7 +239,7 @@ public class PushApiImpl extends BaseService implements PushApi {
 		// 字典模式使用APNPayload.DictionaryAlertMsg
 		payload.setAlertMsg(getDictionaryAlertMsg(dto));
 
-		template.setAPNInfo(payload);
+		// template.setAPNInfo(payload);
 		return template;
 	}
 
