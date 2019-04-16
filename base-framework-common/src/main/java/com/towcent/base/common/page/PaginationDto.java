@@ -1,6 +1,11 @@
 package com.towcent.base.common.page;
 
+import com.towcent.base.common.utils.Md5Utils;
+import com.towcent.base.common.utils.ReflectHelper;
+import org.springframework.util.CollectionUtils;
+
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -20,6 +25,11 @@ public class PaginationDto<E> implements Serializable {
 	private Integer totalCount = 0;
 	
 	private Integer totalPage;
+
+	/**
+	 * 唯一标识符
+	 */
+	private String uniqueIdentifier;
 
 	public PaginationDto() {
 	}
@@ -48,6 +58,39 @@ public class PaginationDto<E> implements Serializable {
 
 	public Integer getTotalPage() {
 		return totalPage;
+	}
+
+	public String getUniqueIdentifier() {
+		return uniqueIdentifier;
+	}
+
+	public void setUniqueIdentifier(String uniqueIdentifier) {
+		this.uniqueIdentifier = uniqueIdentifier;
+	}
+
+	public void setUniqueIdentifier() {
+		try {
+			if (CollectionUtils.isEmpty(list)) {
+				return;
+			}
+			StringBuilder sb = new StringBuilder();
+			for (E e : list) {
+				Object idObj = ReflectHelper.getValueByFieldName(e, "id");
+				if (null == idObj) {
+					break;
+				}
+				sb.append(idObj);
+
+				Object o = ReflectHelper.getValueByFieldName(e, "updateDate");
+				if (null != o) {
+					Date updateDate = (Date) o;
+					sb.append(updateDate.getTime());
+				}
+			}
+			this.uniqueIdentifier = Md5Utils.encryption(sb.toString());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void setTotalPage(Integer pageSize) {
