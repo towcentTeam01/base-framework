@@ -55,7 +55,7 @@ public class BaseCommonApiImpl implements BaseCommonApi {
 			params.put("dictType", key);
 			params.put("status", BaseConstant.DEL_FLAG_0);
 			JsSysDictType jsSysDictType = jsSysDictTypeService.findOne(params);
-			if (null==jsSysDictType) {
+			if (null == jsSysDictType) {
 				return null;
 			}
 			

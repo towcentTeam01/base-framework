@@ -86,6 +86,12 @@ public class PaginationDto<E> implements Serializable {
 					Date updateDate = (Date) o;
 					sb.append(updateDate.getTime());
 				}
+
+				Object time = ReflectHelper.getValueByFieldName(e, "updateTime");
+				if (null != time) {
+					Date updateTime = (Date) time;
+					sb.append(updateTime.getTime());
+				}
 			}
 			this.uniqueIdentifier = Md5Utils.encryption(sb.toString());
 		} catch (Exception e) {
