@@ -38,7 +38,7 @@ public class BaseCacheKey {
 	public static final String SYS_AREA_LEVEL_KEY = "area:level";
 	
 	/** 系统属性配置项缓存key */
-	public static final String SYS_PROPERTY_KEY = "sys:property:key";
+	private static final String SYS_PROPERTY_KEY = "sys:property:key";
 	
 	/** 缓存key分割符 */
 	public static final String COLON = ":";
@@ -118,6 +118,12 @@ public class BaseCacheKey {
 		StringBuilder sb = new StringBuilder(prefix);
 		sb.append(COLON).append(MODEL_GOODS);
 		sb.append(COLON).append("pic").append(COLON).append(goodsNo);
+		return sb.toString();
+	}
+
+	public static String getSysPropertyKey() {
+		StringBuilder sb = new StringBuilder(prefix);
+		sb.append(COLON).append(SYS_PROPERTY_KEY);
 		return sb.toString();
 	}
 

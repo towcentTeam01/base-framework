@@ -1,24 +1,21 @@
 package com.towcent.base.service.impl;
 
-import static com.towcent.base.common.utils.BaseCacheKey.SYS_PROPERTY_KEY;
-
-import java.math.BigDecimal;
-import java.util.List;
-import java.util.Map;
-
-import javax.annotation.Resource;
-
-import org.springframework.stereotype.Service;
-import org.springframework.util.CollectionUtils;
-
 import com.google.common.collect.Maps;
 import com.towcent.base.common.exception.ServiceException;
 import com.towcent.base.common.model.JsSysConfig;
 import com.towcent.base.common.redis.RedisTemplateExt;
+import com.towcent.base.common.utils.BaseCacheKey;
 import com.towcent.base.common.utils.StringUtils;
 import com.towcent.base.dal.db.CrudMapper;
 import com.towcent.base.dal.db.JsSysConfigMapper;
 import com.towcent.base.service.JsSysConfigService;
+import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
+
+import javax.annotation.Resource;
+import java.math.BigDecimal;
+import java.util.List;
+import java.util.Map;
 
 /**
  * 
@@ -44,7 +41,7 @@ public class JsSysConfigServiceImpl extends BaseCrudServiceImpl implements JsSys
     public JsSysConfig getSysPropertyByKey(Integer merchantId, String key) throws ServiceException {
     	// Redis缓存
     	String hashKey = merchantId + "_" + key;
-    	JsSysConfig property = (JsSysConfig) redisTemplateExt.hGet(SYS_PROPERTY_KEY, hashKey);
+    	JsSysConfig property = (JsSysConfig) redisTemplateExt.hGet(BaseCacheKey.getSysPropertyKey(), hashKey);
     	if (null == property) {
     		Map<String, Object> params = Maps.newHashMap();
         	params.put("configKey", key);
@@ -52,7 +49,7 @@ public class JsSysConfigServiceImpl extends BaseCrudServiceImpl implements JsSys
         	List<JsSysConfig> list = this.findByBiz(params);
         	property = CollectionUtils.isEmpty(list) ? null : list.get(0);
         	if (null != property) {
-        		redisTemplateExt.hSet(SYS_PROPERTY_KEY, hashKey, property);
+        		redisTemplateExt.hSet(BaseCacheKey.getSysPropertyKey(), hashKey, property);
         	}
     	}
     	return property;
