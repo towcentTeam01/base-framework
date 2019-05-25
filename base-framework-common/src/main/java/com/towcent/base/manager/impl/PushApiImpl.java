@@ -160,13 +160,13 @@ public class PushApiImpl extends BaseService implements PushApi {
 		template.setAppId(appId);
 		template.setAppkey(appkey);
 		// 透传消息设置，1为强制启动应⽤用，客户端接收到消息后就会⽴立即启动应⽤用；2为等待应⽤用启动
-		template.setTransmissionType(1);
+		template.setTransmissionType(2);
 		Map<String, Object> json = Maps.newHashMap();
 		GtAps aps = new GtAps();
 		GtAps.GtAlert alert = new GtAps.GtAlert();
 		alert.setTitle(dto.getTitle());
 		alert.setBody(dto.getText());
-		alert.setPromptFlag("1");
+		alert.setPromptFlag(true);
 		aps.setAlert(alert);
 		Map<String, Object> apsMap = new HashMap<String, Object>(1) {
 			{
@@ -210,13 +210,13 @@ public class PushApiImpl extends BaseService implements PushApi {
 		template.setAppId(appId);
 		template.setAppkey(appkey);
 		// 透传消息设置，1为强制启动应用，客户端接收到消息后就会立即启动应用；2为等待应用启动
-		template.setTransmissionType(1);
+		template.setTransmissionType(2);
 		Map<String, Object> json = Maps.newHashMap();
 		GtAps aps = new GtAps();
 		GtAps.GtAlert alert = new GtAps.GtAlert();
 		alert.setTitle(dto.getTitle());
 		alert.setBody(dto.getText());
-		alert.setPromptFlag("1");
+		alert.setPromptFlag(true);
 		aps.setAlert(alert);
 		Map<String, Object> apsMap = new HashMap<String, Object>(1) {
 			{
@@ -239,7 +239,7 @@ public class PushApiImpl extends BaseService implements PushApi {
 		// 字典模式使用APNPayload.DictionaryAlertMsg
 		payload.setAlertMsg(getDictionaryAlertMsg(dto));
 
-		// template.setAPNInfo(payload);
+		template.setAPNInfo(payload);
 		return template;
 	}
 

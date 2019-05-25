@@ -548,7 +548,7 @@
 		<dependency>
 			<groupId>com.gexin.platform</groupId>
 			<artifactId>gexin-rp-sdk-http</artifactId>
-			<version>4.0.1.17</version>
+			<version>4.1.0.3</version>
 		</dependency>
 
 		<dependency>

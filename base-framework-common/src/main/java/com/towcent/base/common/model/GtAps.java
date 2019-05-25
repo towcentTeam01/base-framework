@@ -9,8 +9,8 @@ public class GtAps {
     public static class GtAlert implements Serializable {
         public String title;
         public String body;
-        // 是否提示信息 (1:提示"收到1条新消息")
-        public String promptFlag;
+        // 是否提示信息 (true:提示"收到1条新消息")
+        public boolean promptFlag;
 
         public String getTitle() {
             return title;
@@ -28,11 +28,11 @@ public class GtAps {
             this.body = body;
         }
 
-        public String getPromptFlag() {
+        public boolean isPromptFlag() {
             return promptFlag;
         }
 
-        public void setPromptFlag(String promptFlag) {
+        public void setPromptFlag(boolean promptFlag) {
             this.promptFlag = promptFlag;
         }
     }
