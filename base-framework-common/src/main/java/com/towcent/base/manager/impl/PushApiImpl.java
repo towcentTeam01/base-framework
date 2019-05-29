@@ -8,6 +8,7 @@ import cn.jpush.api.push.model.PushPayload;
 import com.alibaba.fastjson.JSON;
 import com.gexin.rp.sdk.base.IPushResult;
 import com.gexin.rp.sdk.base.IQueryResult;
+import com.gexin.rp.sdk.base.impl.ListMessage;
 import com.gexin.rp.sdk.base.impl.SingleMessage;
 import com.gexin.rp.sdk.base.impl.Target;
 import com.gexin.rp.sdk.base.payload.APNPayload;
@@ -35,6 +36,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -146,6 +148,44 @@ public class PushApiImpl extends BaseService implements PushApi {
 		}
 	}
 
+	@Override
+	public void gtPushBatch(List<String> cids, GtPushDto dto, String appId, String gtAppKey, String gtMasterSecret) throws RpcException {
+		IGtPush push = new IGtPush(gtAppKey, gtMasterSecret);
+		AbstractTemplate template = null;
+		if (dto.isIosFlag()) {
+			template = transmissionTemplate(dto, appId, gtAppKey);
+		} else {
+			template = notificationTemplate(dto, appId, gtAppKey);
+		}
+
+		ListMessage message = new ListMessage();
+		message.setData(template);
+		// 设置消息离线，并设置离线时间
+		message.setOffline(true);
+		// 离线有效时间，单位为毫秒，可选
+		message.setOfflineExpireTime(24 * 1000 * 3600);
+		// 配置推送目标
+		List<Target> targets = Lists.newArrayList();
+		for (String cid : cids) {
+			targets.add(buildTarget(appId, cid));
+		}
+		// taskId用于在推送时去查找对应的message
+		String taskId = push.getContentId(message);
+		IPushResult ret = push.pushMessageToList(taskId, targets);
+		if (ret != null) {
+			logger.info(ret.getResponse().toString());
+		} else {
+			logger.info("服务器响应异常");
+		}
+	}
+
+	private Target buildTarget(String appId, String cid) {
+		Target target = new Target();
+		target.setAppId(appId);
+		target.setClientId(cid);
+		return target;
+	}
+
 	/**
 	 * 普通模板<br />
 	 * 在通知栏显示一条含图标、标题的通知，用户点击后激活您的应用
@@ -243,10 +283,12 @@ public class PushApiImpl extends BaseService implements PushApi {
 		return template;
 	}
 
-	public APNPayload.DictionaryAlertMsg getDictionaryAlertMsg(GtPushDto dto) {
+	private APNPayload.DictionaryAlertMsg getDictionaryAlertMsg(GtPushDto dto) {
 		APNPayload.DictionaryAlertMsg msg = new APNPayload.DictionaryAlertMsg();
 		msg.setTitle(dto.getTitle());
 		msg.setBody(dto.getText());
 		return msg;
 	}
+
+
 }

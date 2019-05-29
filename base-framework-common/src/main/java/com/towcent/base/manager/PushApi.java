@@ -6,6 +6,8 @@ import com.towcent.base.common.model.GtPushDto;
 import com.towcent.base.common.model.JPushDto;
 import com.towcent.base.common.model.PushMessage;
 
+import java.util.List;
+
 /**
  * 推送接口
  * @author huangtao
@@ -54,5 +56,16 @@ public interface PushApi {
 	 * @throws RpcException
 	 */
 	void clearIOSBadgeForCid(String cid, String appId, String gtAppKey, String gtMasterSecret) throws RpcException;
+
+	/**
+	 * 批量发送推送
+	 * @param cids
+	 * @param dto
+	 * @param appId
+	 * @param gtAppKey
+	 * @param gtMasterSecret
+	 * @throws RpcException
+	 */
+	void gtPushBatch(List<String> cids, GtPushDto dto, String appId, String gtAppKey, String gtMasterSecret) throws RpcException;
 
 }
