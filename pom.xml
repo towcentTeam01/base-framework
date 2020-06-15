@@ -26,7 +26,7 @@
 		<mysql.version>5.1.47</mysql.version>
 		<oracle.driver.version>12.1.0.1</oracle.driver.version>
 
-		<hibernate.validator.version>5.0.1.Final</hibernate.validator.version>
+		<hibernate.validator.version>5.3.5.Final</hibernate.validator.version>
 
 		<google.guava.version>19.0</google.guava.version>
 		<jackson.version>2.9.6</jackson.version>
