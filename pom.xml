@@ -49,7 +49,7 @@
 		<jsp.version>2.1</jsp.version>
 		<el-impl.version>2.2</el-impl.version>
 		<jedis.version>2.8.1</jedis.version>
-		<quartz.version>2.3.0</quartz.version>
+		<quartz.version>2.3.2</quartz.version>
 		<poi.version>3.14</poi.version>
 		<freemarker.version>2.3.21</freemarker.version>
 		<mail.version>1.4.7</mail.version>
